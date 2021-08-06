@@ -1,12 +1,13 @@
 import React from 'react'
 import './App.scss'
-import RoundWorldMap from './components/WorldMap/RoundWorldMap'
+// import RoundWorldMap from './components/WorldMap/RoundWorldMapAtlas'
+import RotatingRoundWorldMap from './components/WorldMap/RotatingRoundWorldMap'
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-      <RoundWorldMap />
+      <RotatingRoundWorldMap />
 
       </header>
     </div>
