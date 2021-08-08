@@ -1,16 +1,18 @@
+/* eslint-disable import/no-anonymous-default-export */
 
 import { useEffect, useRef } from 'react'
 
+
 interface ICallback {
-  time: number,
-  delta: number,
+  time: number
+  delta: number
 }
 
 interface IFrame {
   current: number
 }
 
-const AnimationFrame = (callback: (arg0: ICallback) => void) => {
+export default (callback: (arg0: ICallback) => void) => {
   const frame = useRef()
   const last = useRef(performance.now())
   const init = useRef(performance.now())
@@ -28,7 +30,4 @@ const AnimationFrame = (callback: (arg0: ICallback) => void) => {
     (frame as unknown as IFrame).current = requestAnimationFrame(animate)
     return () => cancelAnimationFrame((frame as unknown as IFrame).current)
   })
-
 }
-
-export default AnimationFrame

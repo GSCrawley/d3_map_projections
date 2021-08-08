@@ -5,16 +5,21 @@ import { Feature, FeatureCollection, Geometry } from 'geojson'
 
 import PlayCircleFilledWhiteIcon from '@material-ui/icons/PlayCircleFilledWhite'
 import { Button } from '@material-ui/core'
-// import AnimationFrame from '../hooks/AnimationFrame'
+import AnimationFrame from '../../hooks/AnimationFrame'
 
 const uuid = require('react-uuid')
 
-const scale: number = 200
+const scale: number = 250
 const cx: number = 400
 const cy: number = 150
+const initRotation: number = 100
+
 
 const RotatingRoundWorldMap = () => {
     const [geographies, setGeographies] = useState<[] | Array<Feature<Geometry | null>>>([])
+    const [rotation, setRotation] = useState<number>(initRotation)
+    const [isRotate, setIsRotate] = useState<Boolean>(false)
+    
     useEffect(() => {
         fetch('/data/world-110m.json').then((response) => {
           if (response.status !== 200) {
@@ -28,8 +33,19 @@ const RotatingRoundWorldMap = () => {
         })
       }, [])
       
-      const projection = geoOrthographic().scale(scale).translate([cx, cy]).rotate([0, 0])
-        return ( 
+      const projection = geoOrthographic().scale(scale).translate([cx, cy]).rotate([rotation, 0])
+      
+      AnimationFrame(() => {
+        if (isRotate) {
+          let newRotation = rotation
+          if (rotation >= 360) {
+            newRotation = rotation - 360
+          }
+          setRotation(newRotation + 0.25)
+          // console.log(`rotation: ${  rotation}`)
+        }
+      })
+      return ( 
           <>
             <Button
                 size="medium"
