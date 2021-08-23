@@ -3,6 +3,7 @@ import { geoEqualEarth, geoPath } from 'd3-geo'
 import { feature } from 'topojson-client' 
 import { Feature, FeatureCollection, Geometry } from 'geojson'
 // import './WorldMap.scss'
+import  from './src/components/Markers/Markers'
 
 const uuid = require('react-uuid')
 
@@ -10,8 +11,9 @@ const scale: number = 200
 const cx: number = 400
 const cy: number = 150
 
+
 const WorldMapAtlas = () => {
-    const [geographies, setGeographies] = useState<[] | Array<Feature<Geometry | null>>>([])
+  const [geographies, setGeographies] = useState<[] | Array<Feature<Geometry | null>>>([])
     useEffect(() => {
         fetch('/data/world-110m.json').then((response) => {
           if (response.status !== 200) {
@@ -39,6 +41,7 @@ const WorldMapAtlas = () => {
                   />
                 ))}
               </g>
+              
             </svg>
           </>
         )
