@@ -3,7 +3,7 @@ import { geoEqualEarth, geoPath } from 'd3-geo'
 import { feature } from 'topojson-client' 
 import { Feature, FeatureCollection, Geometry } from 'geojson'
 // import './WorldMap.scss'
-import  from './src/components/Markers/Markers'
+import * as svg from '../Markers/Markers'
 
 const uuid = require('react-uuid')
 
